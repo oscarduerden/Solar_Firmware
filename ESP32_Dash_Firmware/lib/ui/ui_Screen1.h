@@ -23,10 +23,22 @@ extern lv_obj_t * ui_Label7;
 extern lv_obj_t * ui_Label8;
 extern lv_obj_t * ui_Label9;
 extern lv_obj_t * ui_Label10;
-extern lv_obj_t * ui_Arc1;
-extern lv_obj_t * ui_Bar1;
-extern lv_obj_t * ui_Bar2;
 extern lv_obj_t * ui_Label11;
+extern lv_obj_t * ui_mphLabel;
+extern lv_obj_t * ui_BatteryBar;
+extern lv_obj_t * ui_SOCBar;
+extern lv_obj_t * ui_SpeedDial;
+extern lv_obj_t * ui_TimeText;
+extern lv_obj_t * ui_MinCellText;
+extern lv_obj_t * ui_MaxCellText;
+extern lv_obj_t * ui_MinPackText;
+extern lv_obj_t * ui_MaxPackText;
+extern lv_obj_t * ui_PackText;
+extern lv_obj_t * ui_MotorText;
+extern lv_obj_t * ui_SolarText;
+extern lv_obj_t * ui_SpeedText;
+extern lv_obj_t * ui_Battery_Text;
+extern lv_obj_t * ui_SOCText;
 // CUSTOM VARIABLES
 
 #ifdef __cplusplus

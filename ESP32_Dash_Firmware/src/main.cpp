@@ -4,12 +4,36 @@
 #include <lvgl.h>
 #include "esp_lv_adapter_arduino.h"
 #include "ui.h" // Your SquareLine export
+#include <ui_Screen1.h>
+#include "display_helper/display_helper.h"
 
 using namespace esp_panel::drivers;
 using namespace esp_panel::board;
 
-void setup()
-{
+DisplayVars GlobalDisplayData;
+
+// update display with current data
+void setDisplay() {
+    lv_arc_set_value(ui_SpeedDial, GlobalDisplayData.Speed);
+    lv_label_set_text_fmt(ui_SpeedText, "%d",GlobalDisplayData.Speed);
+    
+    lv_bar_set_value(ui_BatteryBar, GlobalDisplayData.Battery, LV_ANIM_OFF);
+    lv_bar_set_value(ui_SOCText, GlobalDisplayData.Soc, LV_ANIM_OFF);
+
+    lv_label_set_text_fmt(ui_Battery_Text, "%.1f %%", GlobalDisplayData.Battery);
+    lv_label_set_text_fmt(ui_SOCText, "%.1f %%", GlobalDisplayData.Soc);
+    lv_label_set_text_fmt(ui_TimeText, "%s", GlobalDisplayData.Time.c_str());
+    lv_label_set_text_fmt(ui_MinCellText, "%.2f V", GlobalDisplayData.Min_Cell);
+    lv_label_set_text_fmt(ui_MaxCellText, "%.2f V", GlobalDisplayData.Max_Cell);
+    lv_label_set_text_fmt(ui_MinPackText, "%.2f V", GlobalDisplayData.Min_Pack);
+    lv_label_set_text_fmt(ui_MaxPackText, "%.2f V", GlobalDisplayData.Max_Pack);
+    lv_label_set_text_fmt(ui_PackText, "%.2f V", GlobalDisplayData.Pack);
+    lv_label_set_text_fmt(ui_MotorText, " %.2f V", GlobalDisplayData.Motor);
+    lv_label_set_text_fmt(ui_SolarText, "%.2f V", GlobalDisplayData.Solar);
+    lv_label_set_text_fmt(ui_SpeedText, "%d", GlobalDisplayData.Speed);
+}
+
+void setup() {
     Serial.begin(115200);
     Serial.println("Booting SquareLine UI with ESP Panel...");
 
@@ -66,6 +90,40 @@ void setup()
 
 void loop()
 {
-    // No lv_timer_handler() needed! The adapter runs it in a background task.
+    // 1. Generate a fake ticking clock for the Time string
+    static int minutes = 12;
+    static int seconds = 0;
+    seconds = (seconds + 1) % 60;
+    if (seconds == 0) minutes = (minutes + 1) % 24;
+    char timeBuf[10];
+    snprintf(timeBuf, sizeof(timeBuf), "%02d:%02d", minutes, seconds);
+    GlobalDisplayData.Time = std::string(timeBuf);
+
+    // 2. Increment and wrap Floats
+    // Sweeps Battery from 10.0V to 14.0V
+    GlobalDisplayData.Battery = (GlobalDisplayData.Battery > 14.0f) ? 10.0f : GlobalDisplayData.Battery + 0.1f;
+    // Sweeps SOC from 0% to 100%
+    GlobalDisplayData.Soc = (GlobalDisplayData.Soc > 100.0f) ? 0.0f : GlobalDisplayData.Soc + 1.0f;
+
+    // 3. Increment and wrap Doubles
+    // Sweeps Cell Voltages from 3.0V to 4.2V
+    GlobalDisplayData.Min_Cell = (GlobalDisplayData.Min_Cell > 4.2) ? 3.0 : GlobalDisplayData.Min_Cell + 0.02;
+    GlobalDisplayData.Max_Cell = (GlobalDisplayData.Max_Cell > 4.2) ? 3.0 : GlobalDisplayData.Max_Cell + 0.02;
+
+    // Sweeps Pack Voltages from 80.0V to 120.0V
+    GlobalDisplayData.Min_Pack = (GlobalDisplayData.Min_Pack > 120.0) ? 80.0 : GlobalDisplayData.Min_Pack + 0.5;
+    GlobalDisplayData.Max_Pack = (GlobalDisplayData.Max_Pack > 120.0) ? 80.0 : GlobalDisplayData.Max_Pack + 0.5;
+    GlobalDisplayData.Pack = (GlobalDisplayData.Pack > 120.0) ? 80.0 : GlobalDisplayData.Pack + 0.5;
+
+    // Sweeps Motor Temp from 20C to 80C
+    GlobalDisplayData.Motor = (GlobalDisplayData.Motor > 80.0) ? 20.0 : GlobalDisplayData.Motor + 1.5;
+
+    // Sweeps Solar output from 0W to 500W
+    GlobalDisplayData.Solar = (GlobalDisplayData.Solar > 500.0) ? 0.0 : GlobalDisplayData.Solar + 5.0;
+
+    // 4. Increment and wrap Integer
+    // Sweeps Speed from 0 to 100
+    GlobalDisplayData.Speed = (GlobalDisplayData.Speed + 5) % 105;
+    setDisplay();
     delay(1000);
 }

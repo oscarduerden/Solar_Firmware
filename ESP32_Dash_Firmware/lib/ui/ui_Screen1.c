@@ -15,10 +15,22 @@ lv_obj_t * ui_Label7 = NULL;
 lv_obj_t * ui_Label8 = NULL;
 lv_obj_t * ui_Label9 = NULL;
 lv_obj_t * ui_Label10 = NULL;
-lv_obj_t * ui_Arc1 = NULL;
-lv_obj_t * ui_Bar1 = NULL;
-lv_obj_t * ui_Bar2 = NULL;
 lv_obj_t * ui_Label11 = NULL;
+lv_obj_t * ui_mphLabel = NULL;
+lv_obj_t * ui_BatteryBar = NULL;
+lv_obj_t * ui_SOCBar = NULL;
+lv_obj_t * ui_SpeedDial = NULL;
+lv_obj_t * ui_TimeText = NULL;
+lv_obj_t * ui_MinCellText = NULL;
+lv_obj_t * ui_MaxCellText = NULL;
+lv_obj_t * ui_MinPackText = NULL;
+lv_obj_t * ui_MaxPackText = NULL;
+lv_obj_t * ui_PackText = NULL;
+lv_obj_t * ui_MotorText = NULL;
+lv_obj_t * ui_SolarText = NULL;
+lv_obj_t * ui_SpeedText = NULL;
+lv_obj_t * ui_Battery_Text = NULL;
+lv_obj_t * ui_SOCText = NULL;
 // event funtions
 
 // build funtions
@@ -31,8 +43,8 @@ void ui_Screen1_screen_init(void)
     ui_Label1 = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_Label1, 90);
     lv_obj_set_height(ui_Label1, LV_SIZE_CONTENT);    /// 2
-    lv_obj_set_x(ui_Label1, -314);
-    lv_obj_set_y(ui_Label1, -195);
+    lv_obj_set_x(ui_Label1, -287);
+    lv_obj_set_y(ui_Label1, -200);
     lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label1, "Battery");
     lv_obj_set_style_text_font(ui_Label1, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -40,8 +52,8 @@ void ui_Screen1_screen_init(void)
     ui_Label3 = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_Label3, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label3, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label3, -322);
-    lv_obj_set_y(ui_Label3, -91);
+    lv_obj_set_x(ui_Label3, -294);
+    lv_obj_set_y(ui_Label3, -97);
     lv_obj_set_align(ui_Label3, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label3, "SOC");
     lv_obj_set_style_text_font(ui_Label3, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -49,8 +61,8 @@ void ui_Screen1_screen_init(void)
     ui_Label4 = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_Label4, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label4, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label4, -311);
-    lv_obj_set_y(ui_Label4, 16);
+    lv_obj_set_x(ui_Label4, -312);
+    lv_obj_set_y(ui_Label4, 17);
     lv_obj_set_align(ui_Label4, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label4, "Min Cell");
     lv_obj_set_style_text_font(ui_Label4, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -58,8 +70,8 @@ void ui_Screen1_screen_init(void)
     ui_Label5 = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_Label5, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label5, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label5, -314);
-    lv_obj_set_y(ui_Label5, 118);
+    lv_obj_set_x(ui_Label5, -313);
+    lv_obj_set_y(ui_Label5, 114);
     lv_obj_set_align(ui_Label5, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label5, "Max Cell");
     lv_obj_set_style_text_font(ui_Label5, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -85,8 +97,8 @@ void ui_Screen1_screen_init(void)
     ui_Label8 = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_Label8, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label8, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label8, 279);
-    lv_obj_set_y(ui_Label8, 21);
+    lv_obj_set_x(ui_Label8, 244);
+    lv_obj_set_y(ui_Label8, 0);
     lv_obj_set_align(ui_Label8, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label8, "Pack");
     lv_obj_set_style_text_font(ui_Label8, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -94,8 +106,8 @@ void ui_Screen1_screen_init(void)
     ui_Label9 = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_Label9, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label9, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label9, 283);
-    lv_obj_set_y(ui_Label9, -90);
+    lv_obj_set_x(ui_Label9, 246);
+    lv_obj_set_y(ui_Label9, -87);
     lv_obj_set_align(ui_Label9, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label9, "Motor");
     lv_obj_set_style_text_font(ui_Label9, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -103,37 +115,11 @@ void ui_Screen1_screen_init(void)
     ui_Label10 = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_Label10, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label10, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label10, 272);
-    lv_obj_set_y(ui_Label10, -189);
+    lv_obj_set_x(ui_Label10, 243);
+    lv_obj_set_y(ui_Label10, -163);
     lv_obj_set_align(ui_Label10, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label10, "Solar");
     lv_obj_set_style_text_font(ui_Label10, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_Arc1 = lv_arc_create(ui_Screen1);
-    lv_obj_set_width(ui_Arc1, 204);
-    lv_obj_set_height(ui_Arc1, 218);
-    lv_obj_set_x(ui_Arc1, -21);
-    lv_obj_set_y(ui_Arc1, -40);
-    lv_obj_set_align(ui_Arc1, LV_ALIGN_CENTER);
-    lv_arc_set_value(ui_Arc1, 50);
-
-    ui_Bar1 = lv_bar_create(ui_Screen1);
-    lv_bar_set_value(ui_Bar1, 25, LV_ANIM_OFF);
-    lv_bar_set_start_value(ui_Bar1, 0, LV_ANIM_OFF);
-    lv_obj_set_width(ui_Bar1, 129);
-    lv_obj_set_height(ui_Bar1, 33);
-    lv_obj_set_x(ui_Bar1, -306);
-    lv_obj_set_y(ui_Bar1, -152);
-    lv_obj_set_align(ui_Bar1, LV_ALIGN_CENTER);
-
-    ui_Bar2 = lv_bar_create(ui_Screen1);
-    lv_bar_set_value(ui_Bar2, 25, LV_ANIM_OFF);
-    lv_bar_set_start_value(ui_Bar2, 0, LV_ANIM_OFF);
-    lv_obj_set_width(ui_Bar2, 135);
-    lv_obj_set_height(ui_Bar2, 32);
-    lv_obj_set_x(ui_Bar2, -312);
-    lv_obj_set_y(ui_Bar2, -40);
-    lv_obj_set_align(ui_Bar2, LV_ALIGN_CENTER);
 
     ui_Label11 = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_Label11, LV_SIZE_CONTENT);   /// 1
@@ -142,6 +128,137 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_y(ui_Label11, 216);
     lv_obj_set_align(ui_Label11, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label11, "Time:");
+
+    ui_mphLabel = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_mphLabel, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_mphLabel, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_mphLabel, -20);
+    lv_obj_set_y(ui_mphLabel, -5);
+    lv_obj_set_align(ui_mphLabel, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_mphLabel, "mph");
+
+    ui_BatteryBar = lv_bar_create(ui_Screen1);
+    lv_bar_set_value(ui_BatteryBar, 25, LV_ANIM_OFF);
+    lv_bar_set_start_value(ui_BatteryBar, 0, LV_ANIM_OFF);
+    lv_obj_set_width(ui_BatteryBar, 129);
+    lv_obj_set_height(ui_BatteryBar, 33);
+    lv_obj_set_x(ui_BatteryBar, -291);
+    lv_obj_set_y(ui_BatteryBar, -166);
+    lv_obj_set_align(ui_BatteryBar, LV_ALIGN_CENTER);
+
+    ui_SOCBar = lv_bar_create(ui_Screen1);
+    lv_bar_set_value(ui_SOCBar, 25, LV_ANIM_OFF);
+    lv_bar_set_start_value(ui_SOCBar, 0, LV_ANIM_OFF);
+    lv_obj_set_width(ui_SOCBar, 135);
+    lv_obj_set_height(ui_SOCBar, 33);
+    lv_obj_set_x(ui_SOCBar, -292);
+    lv_obj_set_y(ui_SOCBar, -62);
+    lv_obj_set_align(ui_SOCBar, LV_ALIGN_CENTER);
+
+    ui_SpeedDial = lv_arc_create(ui_Screen1);
+    lv_obj_set_width(ui_SpeedDial, 204);
+    lv_obj_set_height(ui_SpeedDial, 218);
+    lv_obj_set_x(ui_SpeedDial, -21);
+    lv_obj_set_y(ui_SpeedDial, -40);
+    lv_obj_set_align(ui_SpeedDial, LV_ALIGN_CENTER);
+    lv_obj_clear_flag(ui_SpeedDial, LV_OBJ_FLAG_CLICKABLE);      /// Flags
+    lv_arc_set_value(ui_SpeedDial, 50);
+
+    ui_TimeText = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_TimeText, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_TimeText, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_TimeText, -311);
+    lv_obj_set_y(ui_TimeText, 217);
+    lv_obj_set_align(ui_TimeText, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_TimeText, "n/a");
+
+    ui_MinCellText = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_MinCellText, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_MinCellText, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_MinCellText, -307);
+    lv_obj_set_y(ui_MinCellText, 54);
+    lv_obj_set_align(ui_MinCellText, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_MinCellText, "n/a");
+    lv_obj_set_style_text_font(ui_MinCellText, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_MaxCellText = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_MaxCellText, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_MaxCellText, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_MaxCellText, -314);
+    lv_obj_set_y(ui_MaxCellText, 147);
+    lv_obj_set_align(ui_MaxCellText, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_MaxCellText, "n/a");
+    lv_obj_set_style_text_font(ui_MaxCellText, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_MinPackText = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_MinPackText, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_MinPackText, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_MinPackText, -22);
+    lv_obj_set_y(ui_MinPackText, 160);
+    lv_obj_set_align(ui_MinPackText, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_MinPackText, "n/a");
+    lv_obj_set_style_text_font(ui_MinPackText, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_MaxPackText = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_MaxPackText, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_MaxPackText, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_MaxPackText, 245);
+    lv_obj_set_y(ui_MaxPackText, 157);
+    lv_obj_set_align(ui_MaxPackText, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_MaxPackText, "n/a");
+    lv_obj_set_style_text_font(ui_MaxPackText, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_PackText = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_PackText, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_PackText, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_PackText, 247);
+    lv_obj_set_y(ui_PackText, 31);
+    lv_obj_set_align(ui_PackText, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_PackText, "n/a");
+    lv_obj_set_style_text_font(ui_PackText, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_MotorText = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_MotorText, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_MotorText, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_MotorText, 245);
+    lv_obj_set_y(ui_MotorText, -57);
+    lv_obj_set_align(ui_MotorText, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_MotorText, "n/a");
+    lv_obj_set_style_text_font(ui_MotorText, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_SolarText = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_SolarText, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_SolarText, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_SolarText, 244);
+    lv_obj_set_y(ui_SolarText, -136);
+    lv_obj_set_align(ui_SolarText, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_SolarText, "n/a");
+    lv_obj_set_style_text_font(ui_SolarText, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_SpeedText = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_SpeedText, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_SpeedText, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_SpeedText, -19);
+    lv_obj_set_y(ui_SpeedText, -53);
+    lv_obj_set_align(ui_SpeedText, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_SpeedText, "n/a");
+    lv_obj_set_style_text_font(ui_SpeedText, &lv_font_montserrat_46, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Battery_Text = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_Battery_Text, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Battery_Text, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Battery_Text, -285);
+    lv_obj_set_y(ui_Battery_Text, -134);
+    lv_obj_set_align(ui_Battery_Text, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Battery_Text, "n/a");
+
+    ui_SOCText = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_SOCText, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_SOCText, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_SOCText, -290);
+    lv_obj_set_y(ui_SOCText, -29);
+    lv_obj_set_align(ui_SOCText, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_SOCText, "n/a");
 
 }
 
@@ -160,9 +277,21 @@ void ui_Screen1_screen_destroy(void)
     ui_Label8 = NULL;
     ui_Label9 = NULL;
     ui_Label10 = NULL;
-    ui_Arc1 = NULL;
-    ui_Bar1 = NULL;
-    ui_Bar2 = NULL;
     ui_Label11 = NULL;
+    ui_mphLabel = NULL;
+    ui_BatteryBar = NULL;
+    ui_SOCBar = NULL;
+    ui_SpeedDial = NULL;
+    ui_TimeText = NULL;
+    ui_MinCellText = NULL;
+    ui_MaxCellText = NULL;
+    ui_MinPackText = NULL;
+    ui_MaxPackText = NULL;
+    ui_PackText = NULL;
+    ui_MotorText = NULL;
+    ui_SolarText = NULL;
+    ui_SpeedText = NULL;
+    ui_Battery_Text = NULL;
+    ui_SOCText = NULL;
 
 }
