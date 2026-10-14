@@ -123,7 +123,7 @@ void loop()
 
     // 4. Increment and wrap Integer
     // Sweeps Speed from 0 to 100
-    GlobalDisplayData.Speed = (GlobalDisplayData.Speed + 5) % 105;
+    GlobalDisplayData.Speed = (GlobalDisplayData.Speed + 1) % 105;
     setDisplay();
-    delay(1000);
+    delay(200);
 }
